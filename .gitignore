@@ -1,7 +1,4 @@
-data/*.json
-data/*.en
-data/*.ch
-tokenizer/*.model
-tokenizer/*.vocab
-experiment/*.pth
-experiment/output.txt
+__pycache__/
+data/
+exp*
+*.md

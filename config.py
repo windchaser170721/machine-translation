@@ -10,38 +10,29 @@ dropout = 0.1
 padding_idx = 0
 bos_idx = 2
 eos_idx = 3
-src_vocab_size = 32000
-tgt_vocab_size = 32000
-batch_size = 32
-epoch_num = 40
-early_stop = 5
+src_vocab_size = 8000
+tgt_vocab_size = 8000
+batch_size = 16
+epoch_num = 80
 lr = 3e-4
-
-# greed decode的最大句子长度
+warmup = 10000
 max_len = 60
-# beam size for bleu
 beam_size = 3
-# Label Smoothing
+early_stop = 8
+bleu_gap = 2
 use_smoothing = False
-# NoamOpt
 use_noamopt = True
 
+i_exp = 26
 data_dir = './data'
-train_data_path = './data/json/train.json'
-dev_data_path = './data/json/dev.json'
-test_data_path = './data/json/test.json'
-model_path = './experiment/model.pth'
-log_path = './experiment/train.log'
-output_path = './experiment/output.txt'
+train_data_path = './data/json/training.json'
+dev_data_path = './data/json/validation.json'
+test_data_path = './data/json/testing.json'
+model_path = f'./exp{i_exp}/model.pth'
+log_path = f'./exp{i_exp}/train.log'
+output_path = f'./exp{i_exp}/output.txt'
+cfg_path = f'./exp{i_exp}/config.json'
 
-# gpu_id and device id is the relative id
-# thus, if you wanna use os.environ['CUDA_VISIBLE_DEVICES'] = '2, 3'
-# you should set CUDA_VISIBLE_DEVICES = 2 as main -> gpu_id = '0', device_id = [0, 1]
 gpu_id = '0'
-device_id = [0, 1]
+device = torch.device(f"cuda:{gpu_id}")
 
-# set device
-if gpu_id != '':
-    device = torch.device(f"cuda:{gpu_id}")
-else:
-    device = torch.device('cpu')
